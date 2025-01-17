@@ -1,8 +1,9 @@
+import Layout from "../../components/layout";
 const MyOrder =()=>{
     return(
-        <h1 className="bg-amber-500">
+        <Layout>
           MyOrder
-        </h1>
+        </Layout>
     )
 };
 export default MyOrder ;

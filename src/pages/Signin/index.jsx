@@ -1,8 +1,9 @@
+import Layout from "../../components/layout";
 const Signin =()=>{
     return(
-        <h1 className="bg-amber-500">
+        <Layout>
           Signin
-        </h1>
+        </Layout>
     )
 };
 export default Signin;

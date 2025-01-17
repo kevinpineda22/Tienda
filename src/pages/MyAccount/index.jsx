@@ -1,8 +1,10 @@
+import Layout from "../../components/layout";
+
 const MyAccount =()=>{
     return(
-        <h1 className="bg-amber-500">
-           MyAccount 
-        </h1>
+        <Layout>
+            MyAccount
+        </Layout>
     )
 };
 export default MyAccount ;

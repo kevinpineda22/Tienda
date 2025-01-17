@@ -1,8 +1,9 @@
+import Layout from "../../components/layout";
 const NotFound =()=>{
     return(
-        <h1 className="bg-amber-500">
+        <Layout>
           NotFound
-        </h1>
+        </Layout>
     )
 };
 export default NotFound ;
