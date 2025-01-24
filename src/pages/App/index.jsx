@@ -8,6 +8,7 @@ import MyOrders from "../MyOrders";
 import NotFound from "../NotFound";
 import Signin from "../Signin";
 import Navbar from "../../components/Navbar";
+import Checkout from "../../components/Checkout";
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -44,6 +45,7 @@ const App = () => {
       <BrowserRouter>
         <AppRoutes />
         <Navbar />
+        <Checkout />
       </BrowserRouter>
     </ShoppingCartProvider>
   );
