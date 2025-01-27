@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, CheckIcon } from "@heroicons/react/24/solid";
 
 const Card = (data) => {
   const context = useContext(ShoppingCartContext);
@@ -10,14 +10,31 @@ const Card = (data) => {
   };
 
   const addProductsToCart = (event, productData) => {
-    event.stopPropagation()
-    context.setCount(context.count + 1)
+    event.stopPropagation();
+    context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
     context.openCheckoutSideMenu();
     context.closeProductDetail();
-    console.log('cartProducts', context.cartProducts);
-    
-
+  };
+  const renderIcon = (id) => {
+    const isIncart =
+      context.cartProducts.filter((product) => product.id === id).length > 0;
+    if (isIncart) {
+      return (
+        <div className="absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1">
+          <CheckIcon className="h-6 w-6 text-white"></CheckIcon>
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
+          onClick={(event) => addProductsToCart(event, data.data)}
+        >
+          <PlusIcon className="size-6 text-black-500"></PlusIcon>
+        </div>
+      );
+    }
   };
   return (
     <div
@@ -33,14 +50,7 @@ const Card = (data) => {
           src={data.data.images[0]}
           alt={data.data.title}
         />
-        <div
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-          onClick={(event) => addProductsToCart(event, data.data) }
-        >
-          <PlusIcon
-            className="size-6 text-black-500"
-          ></PlusIcon>
-        </div>
+        {renderIcon(data.data.id)}
       </figure>
       <p className=" flex justify-between">
         <span className="text-sm font-light">{data.data.title}</span>

@@ -7,6 +7,13 @@ import OrderCard from "../../components/OrderCard";
 const Checkout = () => {
   const context = useContext(ShoppingCartContext);
 
+  //Funcion para eliminar los productos del carrito
+  const handleDelete = (id) => {
+    const filterProducts = context.cartProducts.filter(product => product.id != id);
+    context.setCartProducts(filterProducts);
+  }
+ 
+
   return (
     <aside
       className={`${
@@ -23,16 +30,23 @@ const Checkout = () => {
           ></XMarkIcon>
         </div>
       </div>
-      {context.cartProducts.map((product) => {
+      <div className="px-6 overflow-y-scroll">
+      {context.cartProducts.map((product) => (
         <OrderCard 
+        key={product.id}
+        id= {product.id}
         title= {product.title}
         imageUrl= {product.images}
         price= {product.price}
+        handleDelete= {handleDelete}
 
         
         />
 
-      })}
+      ))}
+
+      </div>
+     
     </aside>
   );
 };
